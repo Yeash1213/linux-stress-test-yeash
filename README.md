@@ -7,15 +7,17 @@ A full service lifecycle on Ubuntu (Multipass VM): create a service account, giv
 ## Structure
 
 ```text
-scripts/
-├── 01_create_user.sh                   # Idempotent service user creation
-├── 02_setup_tmpfs.sh                   # 256M-capped tmpfs mount
-├── 03_stress_and_populate.sh           # --cpu | --mem | --disk | --all
-├── 04_cleanup.sh                       # Reverse-order, idempotent teardown
-├── bgdsvc_yeash_monitor.sh             # Cron: snapshot every 5 min
-├── bgdsvc_yeash_cleanup_old_files.sh   # Cron: nightly cleanup at 02:00
-└── logrotate_bgdsvc_yeash.conf         # Logrotate rule
-screenshots/                            # Proof for each part
+linux-stress-test-yeash/
+├── scripts/
+│   ├── 01_create_user.sh                   # Idempotent service user creation
+│   ├── 02_setup_tmpfs.sh                   # 256M-capped tmpfs, idempotent
+│   ├── 03_stress_and_populate.sh           # --cpu | --mem | --disk | --all
+│   ├── 04_cleanup.sh                       # Reverse-order, idempotent teardown
+│   ├── bgdsvc_yeash_monitor.sh             # Cron: snapshot every 5 min
+│   ├── bgdsvc_yeash_cleanup_old_files.sh   # Cron: nightly scratch cleanup (02:00)
+│   └── logrotate_bgdsvc_yeash.conf         # Copy of /etc/logrotate.d/bgdsvc_yeash
+├── screenshots/                            # Terminal captures for grading
+└── README.md
 ```
 
 ## Usage
